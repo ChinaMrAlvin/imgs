@@ -1,0 +1,2025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Fullchain Design</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Fullchain Design" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Fullchain Design&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;fullchain-design&quot;&gt;
+&lt;style&gt;
+  #fullchain-design {
+    --p-primary: #1677ff;
+    --p-primary-weak: light-dark(rgba(22,119,255,.1), rgba(22,119,255,.16));
+    --p-red: #f5222d;
+    --p-red-weak: light-dark(rgba(245,34,45,.1), rgba(245,34,45,.18));
+    --p-orange: #fa8c16;
+    --p-orange-weak: light-dark(rgba(250,140,22,.12), rgba(250,140,22,.18));
+    --p-purple: #722ed1;
+    --p-purple-weak: light-dark(rgba(114,46,209,.1), rgba(114,46,209,.18));
+    --p-gray: #8c8c8c;
+    --p-bg: light-dark(#f2f4f7, #101114);
+    --p-surface: light-dark(#ffffff, #1c1d21);
+    --p-surface-2: light-dark(#fafafa, #222328);
+    --p-text: light-dark(#1f2329, #e6e6e6);
+    --p-text-2: light-dark(#5c6470, #a6a6a6);
+    --p-border: light-dark(#e5e7eb, #33353b);
+    --p-shadow: 0 8px 24px rgba(0,0,0,.12);
+    background: var(--p-bg);
+    color: var(--p-text);
+    font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 0;
+  }
+  #fullchain-design * { box-sizing: border-box; }
+  #fullchain-design button { font: inherit; cursor: pointer; }
+  #fullchain-design .fc-appbar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    background: light-dark(#ffffff, #1c1d21);
+    border-bottom: 1px solid var(--p-border);
+    flex-wrap: wrap;
+  }
+  #fullchain-design .fc-brand {
+    display: flex; align-items: center; gap: 8px; font-weight: 500;
+  }
+  #fullchain-design .fc-brand-mark {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: var(--p-primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #fullchain-design .fc-menu {
+    display: flex; gap: 2px; margin-left: 12px; flex-wrap: wrap;
+  }
+  #fullchain-design .fc-menu a {
+    color: var(--p-text-2); text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 13px;
+  }
+  #fullchain-design .fc-menu a.fc-active { color: var(--p-primary); background: var(--p-primary-weak); }
+  #fullchain-design .fc-page {
+    padding: 14px 16px 22px;
+  }
+  #fullchain-design .fc-page-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  #fullchain-design h2 { margin: 0; font-size: 17px; font-weight: 500; }
+  #fullchain-design .fc-sub { color: var(--p-text-2); font-size: 12px; margin-top: 2px; }
+  #fullchain-design .fc-controls {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 10px 12px; margin-bottom: 12px;
+    background: var(--p-surface); border: 1px solid var(--p-border); border-radius: 10px;
+  }
+  #fullchain-design .fc-seg {
+    display: inline-flex; background: var(--p-surface-2); border: 1px solid var(--p-border); border-radius: 8px; padding: 2px; gap: 2px;
+  }
+  #fullchain-design .fc-seg button {
+    border: 0; background: transparent; color: var(--p-text-2);
+    padding: 4px 12px; border-radius: 6px; font-size: 13px;
+  }
+  #fullchain-design .fc-seg button.fc-on { background: var(--p-surface); color: var(--p-primary); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  #fullchain-design .fc-field { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--p-text-2); }
+  #fullchain-design .fc-field select {
+    font: inherit; font-size: 13px; color: var(--p-text);
+    background: var(--p-surface); border: 1px solid var(--p-border); border-radius: 6px; padding: 4px 8px;
+  }
+  #fullchain-design .fc-switch { position: relative; display: inline-block; width: 34px; height: 18px; }
+  #fullchain-design .fc-switch input { opacity: 0; width: 0; height: 0; }
+  #fullchain-design .fc-switch span {
+    position: absolute; inset: 0; background: var(--p-border); border-radius: 9px; transition: background .15s;
+  }
+  #fullchain-design .fc-switch span::before {
+    content: &quot;&quot;; position: absolute; width: 14px; height: 14px; border-radius: 50%;
+    left: 2px; top: 2px; background: #fff; transition: transform .15s;
+  }
+  #fullchain-design .fc-switch input:checked + span { background: var(--p-primary); }
+  #fullchain-design .fc-switch input:checked + span::before { transform: translateX(16px); }
+
+  /* list */
+  #fullchain-design table.fc-table {
+    width: 100%; border-collapse: collapse; background: var(--p-surface); border-radius: 10px; overflow: hidden;
+  }
+  #fullchain-design .fc-table th {
+    text-align: left; font-weight: 400; font-size: 12px; color: var(--p-text-2);
+    padding: 9px 12px; border-bottom: 1px solid var(--p-border); background: var(--p-surface-2);
+  }
+  #fullchain-design .fc-table td {
+    padding: 9px 12px; border-bottom: 1px solid var(--p-border); font-size: 13px; vertical-align: middle;
+  }
+  #fullchain-design .fc-table tr:last-child td { border-bottom: 0; }
+  #fullchain-design .fc-table tr { transition: background .12s; }
+  #fullchain-design .fc-table tbody tr:hover { background: var(--p-primary-weak); }
+  #fullchain-design .fc-link { color: var(--p-primary); font-weight: 500; }
+  #fullchain-design .fc-tag {
+    display: inline-block; font-size: 12px; line-height: 1; padding: 3px 8px; border-radius: 10px;
+    background: var(--p-surface-2); color: var(--p-text-2); border: 1px solid var(--p-border);
+  }
+  #fullchain-design .fc-tag.fc-t-roll { background: var(--p-red-weak); color: var(--p-red); border-color: transparent; }
+  #fullchain-design .fc-tag.fc-t-inspect { background: var(--p-orange-weak); color: var(--p-orange); border-color: transparent; }
+  #fullchain-design .fc-tag.fc-t-done { background: var(--p-primary-weak); color: var(--p-primary); border-color: transparent; }
+  #fullchain-design .fc-tag.fc-t-stop { color: var(--p-text-2); }
+  #fullchain-design .fc-btn {
+    border: 1px solid var(--p-border); background: var(--p-surface); color: var(--p-text);
+    border-radius: 7px; padding: 5px 12px; font-size: 13px;
+  }
+  #fullchain-design .fc-btn:hover { border-color: var(--p-primary); color: var(--p-primary); }
+  #fullchain-design .fc-btn.fc-primary { background: var(--p-primary); border-color: var(--p-primary); color: #fff; }
+  #fullchain-design .fc-btn.fc-primary:hover { opacity: .9; color: #fff; }
+  #fullchain-design .fc-btn.fc-ghost { border-color: transparent; background: transparent; color: var(--p-text-2); }
+
+  /* info bar */
+  #fullchain-design .fc-info {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0;
+    background: var(--p-surface); border: 1px solid var(--p-border); border-radius: 10px; margin-bottom: 12px;
+  }
+  #fullchain-design .fc-info-cell { padding: 8px 12px; border-right: 1px solid var(--p-border); }
+  #fullchain-design .fc-info-cell:last-child { border-right: 0; }
+  #fullchain-design .fc-info-label { font-size: 11px; color: var(--p-text-2); margin-bottom: 2px; }
+  #fullchain-design .fc-info-val { font-size: 13px; font-weight: 500; }
+  #fullchain-design .fc-info-val.fc-mono { font-variant-numeric: tabular-nums; }
+  #fullchain-design .fc-time-keys { color: var(--p-primary); }
+
+  /* legend */
+  #fullchain-design .fc-legend {
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    padding: 8px 12px; margin-bottom: 12px;
+    background: var(--p-surface); border: 1px solid var(--p-border); border-radius: 10px; font-size: 12px; color: var(--p-text-2);
+  }
+  #fullchain-design .fc-legend i {
+    display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--p-text-2); margin-right: 5px; vertical-align: middle;
+  }
+  #fullchain-design .fc-legend i.fc-l-red { border-color: var(--p-red); border-style: dashed; }
+  #fullchain-design .fc-legend i.fc-l-orange { border-color: var(--p-orange); }
+  #fullchain-design .fc-legend i.fc-l-gray { border-color: var(--p-gray); border-style: dashed; }
+  #fullchain-design .fc-legend i.fc-l-purple { border-color: var(--p-purple); }
+  #fullchain-design .fc-legend i.fc-l-yellow { border-color: var(--p-yellow, #faad14); }
+
+  /* flow */
+  #fullchain-design .fc-flow {
+    background: var(--p-surface); border: 1px solid var(--p-border); border-radius: 10px;
+    padding: 18px 16px 24px;
+    position: relative;
+  }
+  #fullchain-design .fc-flow-col {
+    position: relative; padding-left: 34px;
+  }
+  #fullchain-design .fc-flow-col::before {
+    content: &quot;&quot;; position: absolute; left: 15px; top: 16px; bottom: 16px;
+    width: 2px; background: var(--p-border); border-radius: 1px;
+  }
+  #fullchain-design .fc-row { position: relative; padding-left: 34px; }
+  #fullchain-design .fc-row::before {
+    content: &quot;&quot;; position: absolute; left: 15px; top: 50%; width: 14px; height: 2px;
+    background: var(--p-border);
+  }
+  #fullchain-design .fc-row:first-child::before { background: var(--p-primary); }
+  #fullchain-design .fc-row .fc-dot {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    width: 10px; height: 10px; border-radius: 50%; background: var(--p-primary);
+    border: 2px solid var(--p-surface);
+    z-index: 1;
+  }
+  #fullchain-design .fc-row:not(:last-child)::after {
+    content: &quot;&quot;; position: absolute; left: 15px; top: calc(50% + 2px); bottom: -18px; width: 2px;
+    background: var(--p-border);
+  }
+  #fullchain-design .fc-row-inner {
+    display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* node card */
+  #fullchain-design .fc-node {
+    width: 300px; max-width: 100%;
+    background: var(--p-surface-2); border: 1px solid var(--p-border); border-radius: 10px;
+    padding: 10px 12px;
+  }
+  #fullchain-design .fc-node.fc-abnormal { border-color: var(--p-red); border-style: dashed; background: var(--p-red-weak); }
+  #fullchain-design .fc-node.fc-reverse { border-color: var(--p-orange); border-style: dashed; background: var(--p-orange-weak); }
+  #fullchain-design .fc-node.fc-terminal { border-color: var(--p-gray); border-style: dashed; opacity: .85; }
+  #fullchain-design .fc-node.fc-partial { border-color: var(--p-purple); border-style: dashed; }
+  #fullchain-design .fc-node-head { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  #fullchain-design .fc-node-name { font-weight: 500; font-size: 14px; }
+  #fullchain-design .fc-node-code {
+    font-size: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--p-text-2); background: var(--p-surface); border: 1px solid var(--p-border);
+    padding: 1px 5px; border-radius: 4px;
+  }
+  #fullchain-design .fc-node-state { margin-left: auto; font-size: 11px; color: var(--p-text-2); }
+  #fullchain-design .fc-node-time { font-size: 12px; color: var(--p-text-2); margin-top: 2px; }
+  #fullchain-design .fc-node-summary { font-size: 12px; color: var(--p-text); margin-top: 6px; }
+  #fullchain-design .fc-node-fields { font-size: 12px; color: var(--p-text-2); margin-top: 3px; }
+  #fullchain-design .fc-node-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  #fullchain-design .fc-node-actions button {
+    font-size: 12px; border: 1px solid var(--p-border); background: var(--p-surface);
+    color: var(--p-text); border-radius: 6px; padding: 3px 8px;
+  }
+  #fullchain-design .fc-node-actions button:hover { color: var(--p-primary); border-color: var(--p-primary); }
+  #fullchain-design .fc-node-actions button.fc-comm-btn { color: var(--p-primary); }
+  #fullchain-design .fc-change-badge {
+    font-size: 11px; color: var(--p-yellow, #faad14); background: light-dark(rgba(250,173,20,.14), rgba(250,173,20,.2));
+    border: 1px solid var(--p-yellow, #faad14); border-radius: 9px; padding: 1px 7px;
+  }
+  #fullchain-design .fc-repeat-badge {
+    font-size: 11px; color: var(--p-text-2); background: var(--p-surface);
+    border: 1px solid var(--p-border); border-radius: 9px; padding: 1px 7px;
+  }
+  #fullchain-design .fc-node-charge {
+    margin-top: 7px; font-size: 12px; color: var(--p-orange);
+    background: var(--p-orange-weak); border-radius: 6px; padding: 3px 8px; display: inline-block;
+  }
+  #fullchain-design .fc-comm-off .fc-node .fc-comm-row { display: none; }
+  #fullchain-design .fc-comm-row { margin-top: 6px; }
+  #fullchain-design .fc-comm-none { font-size: 12px; color: var(--p-text-2); }
+
+  /* branch column */
+  #fullchain-design .fc-branch {
+    flex: 1; min-width: 220px; max-width: 340px;
+    position: relative; padding-left: 18px; margin-top: 6px;
+    --bc: var(--p-red);
+  }
+  #fullchain-design .fc-branch::before {
+    content: &quot;&quot;; position: absolute; left: 0; top: 18px; width: 14px; height: 2px;
+    background: var(--bc); border-top: 2px dashed var(--bc); border-left: 2px dashed var(--bc);
+  }
+  #fullchain-design .fc-branch.fc-b-reverse { --bc: var(--p-orange); }
+  #fullchain-design .fc-branch.fc-b-terminal { --bc: var(--p-gray); }
+  #fullchain-design .fc-branch.fc-b-partial { --bc: var(--p-purple); }
+  #fullchain-design .fc-branch .fc-branch-tip { font-size: 11px; color: var(--bc); margin-bottom: 6px; }
+  #fullchain-design .fc-branch .fc-node { margin-bottom: 10px; }
+  #fullchain-design .fc-branch-merge {
+    font-size: 11px; color: var(--p-primary); margin-top: 2px;
+    background: var(--p-primary-weak); display: inline-block; padding: 2px 8px; border-radius: 9px;
+  }
+
+  /* modal */
+  #fullchain-design .fc-modal-mask {
+    position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 50;
+    display: none; align-items: flex-start; justify-content: center; padding: 48px 16px 24px;
+  }
+  #fullchain-design .fc-modal-mask.fc-show { display: flex; }
+  #fullchain-design .fc-modal {
+    background: var(--p-surface); border-radius: 12px; width: 620px; max-width: 100%;
+    max-height: 78vh; overflow: auto;
+    box-shadow: var(--p-shadow);
+  }
+  #fullchain-design .fc-modal-head {
+    display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+    border-bottom: 1px solid var(--p-border); position: sticky; top: 0; background: var(--p-surface); z-index: 1;
+  }
+  #fullchain-design .fc-modal-head h3 { margin: 0; font-size: 15px; font-weight: 500; flex: 1; }
+  #fullchain-design .fc-modal-x {
+    border: 0; background: transparent; color: var(--p-text-2); padding: 4px; border-radius: 6px; display: flex;
+  }
+  #fullchain-design .fc-modal-x:hover { background: var(--p-surface-2); color: var(--p-text); }
+  #fullchain-design .fc-modal-body { padding: 12px 16px 16px; }
+  #fullchain-design .fc-evt {
+    border: 1px solid var(--p-border); border-radius: 9px; padding: 10px 12px; margin-bottom: 10px;
+    background: var(--p-surface-2);
+  }
+  #fullchain-design .fc-evt.fc-evt-change { border-color: var(--p-yellow, #faad14); background: light-dark(rgba(250,173,20,.08), rgba(250,173,20,.12)); }
+  #fullchain-design .fc-evt-head { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--p-text-2); }
+  #fullchain-design .fc-evt-head .fc-strong { color: var(--p-text); font-weight: 500; }
+  #fullchain-design .fc-evt-sum { font-size: 13px; margin-top: 5px; }
+  #fullchain-design details.fc-payload { margin-top: 6px; font-size: 12px; }
+  #fullchain-design details.fc-payload summary { color: var(--p-primary); cursor: pointer; }
+  #fullchain-design pre.fc-json {
+    background: var(--p-bg); border: 1px solid var(--p-border); border-radius: 6px;
+    padding: 8px; margin: 6px 0 0; font-size: 11px; overflow: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  #fullchain-design .fc-file { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; margin: 6px 6px 0 0; }
+  #fullchain-design .fc-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--p-border); margin-bottom: 10px; }
+  #fullchain-design .fc-tabs button {
+    border: 0; background: transparent; padding: 6px 10px; font-size: 13px; color: var(--p-text-2);
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  #fullchain-design .fc-tabs button.fc-on { color: var(--p-primary); border-bottom-color: var(--p-primary); }
+  #fullchain-design .fc-msg { display: flex; gap: 9px; margin-bottom: 10px; }
+  #fullchain-design .fc-avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--p-primary-weak); color: var(--p-primary);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;
+  }
+  #fullchain-design .fc-msg-body { flex: 1; }
+  #fullchain-design .fc-msg-meta { font-size: 11px; color: var(--p-text-2); }
+  #fullchain-design .fc-msg-text {
+    background: var(--p-surface-2); border: 1px solid var(--p-border); border-radius: 8px;
+    padding: 7px 10px; font-size: 13px; margin-top: 3px;
+  }
+  #fullchain-design .fc-msg-img {
+    margin-top: 6px; height: 84px; border-radius: 8px; border: 1px solid var(--p-border);
+    background: linear-gradient(135deg, var(--p-primary-weak), var(--p-purple-weak));
+    display: flex; align-items: center; justify-content: center; color: var(--p-primary); font-size: 12px;
+  }
+  @media (max-width: 560px) {
+    #fullchain-design .fc-node { width: 100%; }
+    #fullchain-design .fc-branch { max-width: none; min-width: 0; width: 100%; }
+    #fullchain-design .fc-table th:nth-child(5), #fullchain-design .fc-table td:nth-child(5) { display: none; }
+  }
+&lt;/style&gt;
+
+&lt;div class=&quot;fc-appbar&quot;&gt;
+  &lt;div class=&quot;fc-brand&quot;&gt;
+    &lt;span class=&quot;fc-brand-mark&quot;&gt;&lt;i data-lucide=&quot;anchor&quot; aria-hidden=&quot;true&quot; style=&quot;width:14px;height:14px&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+    &lt;span&gt;CIMC Freight&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;nav class=&quot;fc-menu&quot;&gt;
+    &lt;a&gt;运价管理&lt;/a&gt;&lt;a&gt;订单管理&lt;/a&gt;&lt;a class=&quot;fc-active&quot;&gt;订单全链路&lt;/a&gt;&lt;a&gt;货物跟踪&lt;/a&gt;&lt;a&gt;提单管理&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fc-page&quot;&gt;
+  &lt;div class=&quot;fc-page-head&quot;&gt;
+    &lt;div&gt;
+      &lt;h2 id=&quot;fc-title&quot;&gt;订单全链路看板&lt;/h2&gt;
+      &lt;div class=&quot;fc-sub&quot;&gt;只读画布 · 基于事件日志渲染 · 修改操作跳转原 TMS 页面&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;fc-seg&quot; role=&quot;group&quot; aria-label=&quot;视图&quot;&gt;
+      &lt;button type=&quot;button&quot; id=&quot;fc-view-list&quot; class=&quot;fc-on&quot;&gt;运单列表&lt;/button&gt;
+      &lt;button type=&quot;button&quot; id=&quot;fc-view-canvas&quot;&gt;全链路画布&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;fc-controls&quot;&gt;
+    &lt;div class=&quot;fc-field&quot;&gt;&lt;label for=&quot;fc-mode&quot;&gt;业务模式&lt;/label&gt;
+      &lt;select id=&quot;fc-mode&quot;&gt;
+        &lt;option value=&quot;fcl&quot;&gt;海运整柜 FCL&lt;/option&gt;
+        &lt;option value=&quot;lcl&quot;&gt;海运拼箱 LCL&lt;/option&gt;
+        &lt;option value=&quot;air&quot;&gt;空运&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;fc-field&quot;&gt;&lt;label for=&quot;fc-scenario&quot;&gt;场景样例&lt;/label&gt;
+      &lt;select id=&quot;fc-scenario&quot;&gt;&lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;fc-field&quot; style=&quot;margin-left:auto&quot;&gt;
+      &lt;span&gt;沟通记录模块&lt;/span&gt;
+      &lt;label class=&quot;fc-switch&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;fc-comm-toggle&quot; checked&gt;&lt;span&gt;&lt;/span&gt;&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- list view --&gt;
+  &lt;div id=&quot;fc-list&quot;&gt;
+    &lt;table class=&quot;fc-table&quot; aria-label=&quot;运单样例列表&quot;&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;运单号&lt;/th&gt;&lt;th&gt;模式&lt;/th&gt;&lt;th&gt;航线&lt;/th&gt;&lt;th&gt;订单状态&lt;/th&gt;&lt;th&gt;异常标记&lt;/th&gt;&lt;th&gt;ETD&lt;/th&gt;&lt;th&gt;ETA&lt;/th&gt;&lt;th&gt;最后事件&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody id=&quot;fc-list-body&quot;&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+
+  &lt;!-- canvas view --&gt;
+  &lt;div id=&quot;fc-canvas&quot; hidden&gt;
+    &lt;div class=&quot;fc-info&quot; id=&quot;fc-info&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;fc-legend&quot;&gt;
+      &lt;span&gt;&lt;i style=&quot;border-color:var(--p-primary)&quot;&gt;&lt;/i&gt;正常主线&lt;/span&gt;
+      &lt;span&gt;&lt;i class=&quot;fc-l-red&quot;&gt;&lt;/i&gt;异常分支&lt;/span&gt;
+      &lt;span&gt;&lt;i class=&quot;fc-l-orange&quot;&gt;&lt;/i&gt;逆向/回退&lt;/span&gt;
+      &lt;span&gt;&lt;i class=&quot;fc-l-gray&quot;&gt;&lt;/i&gt;终止&lt;/span&gt;
+      &lt;span&gt;&lt;i class=&quot;fc-l-purple&quot;&gt;&lt;/i&gt;部分完成&lt;/span&gt;
+      &lt;span&gt;&lt;i class=&quot;fc-l-yellow&quot;&gt;&lt;/i&gt;改单挂载&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;fc-flow&quot;&gt;
+      &lt;div class=&quot;fc-flow-col&quot; id=&quot;fc-flow&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- event modal --&gt;
+&lt;div class=&quot;fc-modal-mask&quot; id=&quot;fc-event-mask&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;事件日志&quot;&gt;
+  &lt;div class=&quot;fc-modal&quot;&gt;
+    &lt;div class=&quot;fc-modal-head&quot;&gt;
+      &lt;h3 id=&quot;fc-event-title&quot;&gt;事件日志&lt;/h3&gt;
+      &lt;button type=&quot;button&quot; class=&quot;fc-modal-x&quot; data-close=&quot;fc-event-mask&quot;&gt;&lt;i data-lucide=&quot;x&quot; aria-hidden=&quot;true&quot; style=&quot;width:15px;height:15px&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;fc-modal-body&quot; id=&quot;fc-event-body&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- comm modal --&gt;
+&lt;div class=&quot;fc-modal-mask&quot; id=&quot;fc-comm-mask&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;沟通记录&quot;&gt;
+  &lt;div class=&quot;fc-modal&quot;&gt;
+    &lt;div class=&quot;fc-modal-head&quot;&gt;
+      &lt;h3 id=&quot;fc-comm-title&quot;&gt;沟通记录&lt;/h3&gt;
+      &lt;button type=&quot;button&quot; class=&quot;fc-modal-x&quot; data-close=&quot;fc-comm-mask&quot;&gt;&lt;i data-lucide=&quot;x&quot; aria-hidden=&quot;true&quot; style=&quot;width:15px;height:15px&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;fc-modal-body&quot;&gt;
+      &lt;div class=&quot;fc-tabs&quot; id=&quot;fc-comm-tabs&quot;&gt;&lt;/div&gt;
+      &lt;div id=&quot;fc-comm-body&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  (function () {
+    const CARD = {
+      ORDER_CREATED: { name: &quot;委托受理&quot;, code: &quot;ORDER_CREATED&quot;, domain: &quot;委托&quot; },
+      BOOKING_SUBMITTED: { name: &quot;订舱申请&quot;, code: &quot;BOOKING_SUBMITTED&quot;, domain: &quot;订舱&quot; },
+      SO_RECEIVED: { name: &quot;获取 SO&quot;, code: &quot;SO_RECEIVED&quot;, domain: &quot;订舱&quot; },
+      CNTR_PICKUP: { name: &quot;提箱还重&quot;, code: &quot;CNTR_PICKUP&quot;, domain: &quot;物流&quot; },
+      CUSTOMS_DECLARED: { name: &quot;报关申报&quot;, code: &quot;CUSTOMS_DECLARED&quot;, domain: &quot;报关&quot; },
+      CUSTOMS_INSPECTION: { name: &quot;查验处理&quot;, code: &quot;CUSTOMS_INSPECTION&quot;, domain: &quot;报关&quot;, tag: &quot;ABNORMAL&quot; },
+      CUSTOMS_RELEASED: { name: &quot;报关放行&quot;, code: &quot;CUSTOMS_RELEASED&quot;, domain: &quot;报关&quot; },
+      LOADING_CONFIRMED: { name: &quot;装船确认&quot;, code: &quot;LOADING_CONFIRMED&quot;, domain: &quot;物流&quot; },
+      DEPARTED: { name: &quot;离港&quot;, code: &quot;DEPARTED&quot;, domain: &quot;物流&quot; },
+      ARRIVED: { name: &quot;到港&quot;, code: &quot;ARRIVED&quot;, domain: &quot;物流&quot; },
+      DEST_CUSTOMS_CLEARED: { name: &quot;目的港清关&quot;, code: &quot;DEST_CUSTOMS_CLEARED&quot;, domain: &quot;清关&quot; },
+      DELIVERED: { name: &quot;签收完成&quot;, code: &quot;DELIVERED&quot;, domain: &quot;派送&quot; },
+      ROLLED: { name: &quot;甩柜（船司原因）&quot;, code: &quot;ROLLED&quot;, domain: &quot;异常&quot;, tag: &quot;ABNORMAL&quot; },
+      REBOOKING_APPLIED: { name: &quot;改配申请&quot;, code: &quot;REBOOKING_APPLIED&quot;, domain: &quot;异常&quot;, tag: &quot;ABNORMAL&quot; },
+      REBOOKING_CONFIRMED: { name: &quot;改配完成&quot;, code: &quot;REBOOKING_CONFIRMED&quot;, domain: &quot;异常&quot;, tag: &quot;ABNORMAL&quot; },
+      CUSTOMS_DETAINED: { name: &quot;查验扣货&quot;, code: &quot;CUSTOMS_DETAINED&quot;, domain: &quot;异常&quot;, tag: &quot;TERMINAL&quot; },
+      SHORT_SHIPMENT: { name: &quot;漏装（部分柜顺延）&quot;, code: &quot;SHORT_SHIPMENT&quot;, domain: &quot;异常&quot;, tag: &quot;PARTIAL&quot; },
+      ORDER_TERMINATED: { name: &quot;中途终止&quot;, code: &quot;ORDER_TERMINATED&quot;, domain: &quot;异常&quot;, tag: &quot;TERMINAL&quot; },
+      BOOKING_CANCELLED: { name: &quot;取消订舱（回退）&quot;, code: &quot;BOOKING_CANCELLED&quot;, domain: &quot;异常&quot;, tag: &quot;REVERSE&quot; },
+      ORDER_CLOSED: { name: &quot;订单关闭&quot;, code: &quot;ORDER_CLOSED&quot;, domain: &quot;异常&quot;, tag: &quot;TERMINAL&quot; },
+      ORDER_CHANGED: { name: &quot;改单&quot;, code: &quot;ORDER_CHANGED&quot;, domain: &quot;变更&quot;, tag: &quot;CHANGE&quot; },
+      CNTR_EMPTY_RETURN: { name: &quot;还空箱&quot;, code: &quot;CNTR_EMPTY_RETURN&quot;, domain: &quot;物流&quot;, tag: &quot;TERMINAL&quot; },
+      CFS_INBOUND: { name: &quot;送货入仓&quot;, code: &quot;CFS_INBOUND&quot;, domain: &quot;物流&quot; },
+      CFS_CONSOLIDATED: { name: &quot;拼箱装柜&quot;, code: &quot;CFS_CONSOLIDATED&quot;, domain: &quot;物流&quot; },
+      CFS_DEVANNED: { name: &quot;拆箱分货&quot;, code: &quot;CFS_DEVANNED&quot;, domain: &quot;物流&quot; },
+      SPACE_CONFIRMED: { name: &quot;舱位确认&quot;, code: &quot;SPACE_CONFIRMED&quot;, domain: &quot;订舱&quot; },
+      WAREHOUSE_INBOUND: { name: &quot;入仓过磅&quot;, code: &quot;WAREHOUSE_INBOUND&quot;, domain: &quot;物流&quot; },
+      LOADED: { name: &quot;装机&quot;, code: &quot;LOADED&quot;, domain: &quot;物流&quot; },
+      TAKEOFF: { name: &quot;起飞&quot;, code: &quot;TAKEOFF&quot;, domain: &quot;物流&quot; },
+      LANDED: { name: &quot;落地&quot;, code: &quot;LANDED&quot;, domain: &quot;物流&quot; },
+    };
+    const ROLE = { OPERATOR: &quot;操作&quot;, DOCUMENT: &quot;单证&quot;, BROKER: &quot;报关行&quot;, TRUCKER: &quot;车队&quot;, CARRIER: &quot;船司&quot;, POD_AGENT: &quot;目的港代理&quot;, SYSTEM: &quot;系统/EDI&quot;, CUSTOMER: &quot;客户&quot;, SALES: &quot;销售&quot; };
+    const SRC = { SYSTEM: &quot;系统&quot;, EDI: &quot;EDI&quot;, EMAIL: &quot;邮件&quot;, IM: &quot;微信&quot;, PHONE: &quot;电话&quot;, MANUAL: &quot;人工补录&quot; };
+
+    const waybills = [
+      { no: &quot;CIMC20260831-001&quot;, mode: &quot;fcl&quot;, route: &quot;宁波 NGB → 洛杉矶 LAX&quot;, status: &quot;审核通过&quot;, tag: &quot;甩柜&quot;, etd: &quot;08-31&quot;, eta: &quot;09-08&quot;, last: &quot;改配完成&quot;, scen: &quot;fcl_roll&quot;, carrier: &quot;CMA CGM COLUMBIA / 063E&quot;, mbl: &quot;CMCU8823101&quot;, hbl: &quot;CIMC-H88231&quot;, cust: &quot;上海XX贸易有限公司&quot;, ctnr: &quot;2×40HQ&quot; },
+      { no: &quot;CIMC20260831-002&quot;, mode: &quot;fcl&quot;, route: &quot;上海 SHA → 汉堡 HAM&quot;, status: &quot;审核通过&quot;, tag: &quot;查验&quot;, etd: &quot;08-30&quot;, eta: &quot;09-12&quot;, last: &quot;查验放行&quot;, scen: &quot;fcl_normal&quot;, carrier: &quot;COSCO PACIFIC / 221W&quot;, mbl: &quot;COSU8823402&quot;, hbl: &quot;CIMC-H88232&quot;, cust: &quot;苏州YY电子&quot;, ctnr: &quot;1×40HQ&quot; },
+      { no: &quot;CIMC20260831-003&quot;, mode: &quot;fcl&quot;, route: &quot;宁波 NGB → 洛杉矶 LAX&quot;, status: &quot;操作完成&quot;, tag: &quot;无&quot;, etd: &quot;08-25&quot;, eta: &quot;09-01&quot;, last: &quot;签收完成&quot;, scen: &quot;fcl_normal&quot;, carrier: &quot;EVER GIVEN / 130E&quot;, mbl: &quot;EGLV8823403&quot;, hbl: &quot;CIMC-H88233&quot;, cust: &quot;杭州ZZ家纺&quot;, ctnr: &quot;3×40HQ&quot; },
+      { no: &quot;CIMC20260831-004&quot;, mode: &quot;fcl&quot;, route: &quot;深圳 SZX → 长滩 LGB&quot;, status: &quot;审核通过&quot;, tag: &quot;扣货&quot;, etd: &quot;09-02&quot;, eta: &quot;09-15&quot;, last: &quot;查验扣货&quot;, scen: &quot;fcl_detain&quot;, carrier: &quot;MAERSK HONGKONG / 441S&quot;, mbl: &quot;MAEU8823404&quot;, hbl: &quot;CIMC-H88234&quot;, cust: &quot;广州AA家具&quot;, ctnr: &quot;2×40GP&quot; },
+      { no: &quot;CIMC20260831-005&quot;, mode: &quot;fcl&quot;, route: &quot;宁波 NGB → 纽约 NYC&quot;, status: &quot;审核通过&quot;, tag: &quot;漏装&quot;, etd: &quot;08-29&quot;, eta: &quot;09-10&quot;, last: &quot;1/2 柜顺延&quot;, scen: &quot;fcl_short&quot;, carrier: &quot;OOCL BERLIN / 098E&quot;, mbl: &quot;OOLU8823405&quot;, hbl: &quot;CIMC-H88235&quot;, cust: &quot;南京BB五金&quot;, ctnr: &quot;2×40HQ&quot; },
+      { no: &quot;CIMC20260831-006&quot;, mode: &quot;fcl&quot;, route: &quot;上海 SHA → 洛杉矶 LAX&quot;, status: &quot;已作废&quot;, tag: &quot;终止&quot;, etd: &quot;08-28&quot;, eta: &quot;-&quot;, last: &quot;提箱后退柜&quot;, scen: &quot;fcl_terminated&quot;, carrier: &quot;YML TOKYO / 551E&quot;, mbl: &quot;YMLU8823406&quot;, hbl: &quot;CIMC-H88236&quot;, cust: &quot;无锡CC服饰&quot;, ctnr: &quot;1×40HQ&quot; },
+      { no: &quot;CIMC20260831-007&quot;, mode: &quot;lcl&quot;, route: &quot;宁波 NGB → 洛杉矶 LAX&quot;, status: &quot;操作完成&quot;, tag: &quot;无&quot;, etd: &quot;08-30&quot;, eta: &quot;09-12&quot;, last: &quot;拆箱分货&quot;, scen: &quot;lcl_normal&quot;, carrier: &quot;ONE APUS / 008W&quot;, mbl: &quot;ONEY8823407&quot;, hbl: &quot;CIMC-L88237&quot;, cust: &quot;义乌DD百货（拼柜）&quot;, ctnr: &quot;LCL 18CBM&quot; },
+      { no: &quot;CIMC20260831-008&quot;, mode: &quot;air&quot;, route: &quot;上海 PVG → 洛杉矶 LAX&quot;, status: &quot;操作完成&quot;, tag: &quot;无&quot;, etd: &quot;08-31&quot;, eta: &quot;09-01&quot;, last: &quot;签收完成&quot;, scen: &quot;air_normal&quot;, carrier: &quot;CA 983 / 08-31&quot;, mbl: &quot;MAWB 999-8823&quot;, hbl: &quot;CIMC-A88238&quot;, cust: &quot;北京EE仪器&quot;, ctnr: &quot;AWB 560KG&quot; },
+      { no: &quot;CIMC20260831-009&quot;, mode: &quot;fcl&quot;, route: &quot;宁波 NGB → 长滩 LGB&quot;, status: &quot;审核通过&quot;, tag: &quot;多次改配&quot;, etd: &quot;09-08&quot;, eta: &quot;09-15&quot;, last: &quot;改配完成（第2次）&quot;, scen: &quot;fcl_multi&quot;, carrier: &quot;COSCO SHANGHAI / 090E&quot;, mbl: &quot;COSU8823409&quot;, hbl: &quot;CIMC-H88239&quot;, cust: &quot;宁波FF汽配&quot;, ctnr: &quot;2×40HQ&quot; },
+      { no: &quot;CIMC20260831-010&quot;, mode: &quot;fcl&quot;, route: &quot;上海 SHA → 新加坡 SIN&quot;, status: &quot;已作废&quot;, tag: &quot;回退取消&quot;, etd: &quot;-&quot;, eta: &quot;-&quot;, last: &quot;订单关闭&quot;, scen: &quot;fcl_reverse&quot;, carrier: &quot;PIL TIANJIN / 125S&quot;, mbl: &quot;PILU8823410&quot;, hbl: &quot;CIMC-H88240&quot;, cust: &quot;杭州GG机械&quot;, ctnr: &quot;1×20GP&quot; },
+    ];
+
+    const comm = (type, from, text) =&gt; ({ type, from, text });
+    const E = (code, prev, opts) =&gt; Object.assign({
+      code, prev, tag: CARD[code].tag || &quot;NORMAL&quot;, time: &quot;08-25 09:30&quot;,
+      role: &quot;OPERATOR&quot;, source: &quot;SYSTEM&quot;, summary: &quot;&quot;, fields: &quot;&quot;, planned: &quot;&quot;,
+      comms: [], charge: null, files: [], payload: {}
+    }, opts);
+
+    const scenarios = {
+      fcl_normal: {
+        title: &quot;FCL 正常（含查验放行）&quot;, info: waybills[1],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-24 09:30&quot;, summary: &quot;收到托书，委托受理完成&quot;, fields: &quot;上海XX贸易 · 1×40HQ · SHA→HAM&quot;, files: [{ n: &quot;托书-CIMC20260831-002.pdf&quot; }] }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-24 11:00&quot;, summary: &quot;向 COSCO 提交订舱申请，等待确认&quot;, fields: &quot;订舱费 USD 850&quot;, role: &quot;OPERATOR&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-24 16:20&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司回 SO：COSCO PACIFIC / 221W，截关 08-29 12:00&quot;, fields: &quot;开港 08-27 · 截港 08-29 18:00 · VGM 截止 08-28&quot;, comms: [comm(&quot;email&quot;, &quot;船司&quot;, &quot;Booking confirmed. SO attached, vessel COSCO PACIFIC V.221W.&quot;)] }),
+          E(&quot;CNTR_PICKUP&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-26 09:00&quot;, role: &quot;TRUCKER&quot;, planned: &quot;计划 08-26 09:00&quot;, summary: &quot;提空箱 + 重箱进港完成&quot;, fields: &quot;箱号 COSU8823101 · 封号 0682113&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CNTR_PICKUP&quot;], { time: &quot;08-28 14:00&quot;, role: &quot;BROKER&quot;, summary: &quot;报关行申报出口报关&quot;, fields: &quot;HS CODE 9403.60 · 申报要素已齐&quot; }),
+          E(&quot;ORDER_CHANGED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-28 15:00&quot;, role: &quot;DOCUMENT&quot;, tag: &quot;CHANGE&quot;, summary: &quot;改单：品名「竹制家具」→「木制家具」，HS CODE 同步调整&quot;, fields: &quot;改单类型 改品名 · 改单工单 #CG-0828-01&quot;, payload: { before: { 品名: &quot;竹制家具&quot; }, after: { 品名: &quot;木制家具&quot;, hsCode: &quot;9403.60&quot; } } }),
+          E(&quot;CUSTOMS_INSPECTION&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-28 15:10&quot;, source: &quot;EDI&quot;, summary: &quot;海关布控：机检&quot;, fields: &quot;查验方式 机检&quot;, charge: { name: &quot;查验费&quot;, amount: &quot;¥800&quot; }, comms: [comm(&quot;wechat&quot;, &quot;报关行&quot;, &quot;这票被布控机检了，预计 1-2 小时出结果。&quot;)] }),
+          E(&quot;CUSTOMS_RELEASED&quot;, [&quot;CUSTOMS_INSPECTION&quot;], { time: &quot;08-28 17:30&quot;, source: &quot;EDI&quot;, summary: &quot;海关放行回传，可装船&quot;, fields: &quot;放行时间 08-28 17:30&quot; }),
+          E(&quot;LOADING_CONFIRMED&quot;, [&quot;CUSTOMS_RELEASED&quot;], { time: &quot;08-29 10:00&quot;, source: &quot;EDI&quot;, summary: &quot;码头确认装船（On Board）&quot;, fields: &quot;截关前 2 小时完成装船&quot; }),
+          E(&quot;DEPARTED&quot;, [&quot;LOADING_CONFIRMED&quot;], { time: &quot;08-30 03:20&quot;, source: &quot;EDI&quot;, summary: &quot;离港 ATD&quot;, fields: &quot;实际开船 08-30 03:20&quot; }),
+          E(&quot;ARRIVED&quot;, [&quot;DEPARTED&quot;], { time: &quot;09-12 04:10&quot;, source: &quot;EDI&quot;, planned: &quot;计划 09-12 06:00&quot;, summary: &quot;到港 ATA&quot;, fields: &quot;码头 HHLA Hamburg&quot; }),
+          E(&quot;DEST_CUSTOMS_CLEARED&quot;, [&quot;ARRIVED&quot;], { time: &quot;09-13 15:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;目的港换单 + 进口清关放行&quot;, fields: &quot;免费用箱期 7 天 · 起算 09-13&quot; }),
+          E(&quot;DELIVERED&quot;, [&quot;DEST_CUSTOMS_CLEARED&quot;], { time: &quot;09-14 11:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;提货签收，运费结算完成&quot;, fields: &quot;签收人 XX LOGISTICS&quot; }),
+        ]
+      },
+      fcl_roll: {
+        title: &quot;FCL 甩柜改配&quot;, info: waybills[0],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-23 09:30&quot;, summary: &quot;收到托书，委托受理完成&quot;, fields: &quot;上海XX贸易 · 2×40HQ · NGB→LAX&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-23 11:00&quot;, summary: &quot;向 CMA 提交订舱申请&quot;, fields: &quot;订舱费 USD 1700&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-24 16:20&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司回 SO：CMA CGM COLUMBIA / 063E，截关 08-30 12:00&quot;, fields: &quot;开港 08-28 · 截港 08-30 18:00 · VGM 截止 08-29&quot; }),
+          E(&quot;CNTR_PICKUP&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-27 09:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;提空箱 CMAU8823101/02 + 重箱进港&quot;, fields: &quot;箱号 2×40HQ 已进港&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CNTR_PICKUP&quot;], { time: &quot;08-29 14:00&quot;, role: &quot;BROKER&quot;, summary: &quot;报关申报完成，等待放行&quot; }),
+          E(&quot;ROLLED&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-29 18:40&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司通知：爆舱甩柜，本航次无法装船，顺延下一航次&quot;, fields: &quot;原因 船司爆舱 · 原船 063E&quot;, comms: [comm(&quot;email&quot;, &quot;船司&quot;, &quot;Due to vessel overbooking, your shipment is rolled to V.063F.&quot;), comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;张经理，船司爆舱甩柜了，我马上安排改配下一班 063F，预计 09-05 开船。&quot;)] }),
+          E(&quot;REBOOKING_APPLIED&quot;, [&quot;ROLLED&quot;], { time: &quot;08-29 19:20&quot;, summary: &quot;提交改配申请：063F 航次&quot;, fields: &quot;目标航次 063F · 新截关 09-01&quot;, charge: { name: &quot;改配费&quot;, amount: &quot;¥300&quot; } }),
+          E(&quot;REBOOKING_CONFIRMED&quot;, [&quot;REBOOKING_APPLIED&quot;], { time: &quot;08-30 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司确认改配 063F，重箱留港等待装船&quot;, fields: &quot;新船期 ETD 09-05 · ETA 09-12&quot;, comms: [comm(&quot;email&quot;, &quot;船司&quot;, &quot;Rebooking confirmed to V.063F. Containers stay at terminal.&quot;)] }),
+          E(&quot;CUSTOMS_RELEASED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-29 17:30&quot;, source: &quot;EDI&quot;, summary: &quot;海关放行（跨航次有效）&quot;, fields: &quot;放行时间 08-29 17:30&quot; }),
+          E(&quot;LOADING_CONFIRMED&quot;, [&quot;REBOOKING_CONFIRMED&quot;, &quot;CUSTOMS_RELEASED&quot;], { time: &quot;09-04 11:00&quot;, source: &quot;EDI&quot;, summary: &quot;改配航次装船确认（On Board）&quot;, fields: &quot;船名 CMA CGM COLUMBIA / 063F&quot; }),
+          E(&quot;DEPARTED&quot;, [&quot;LOADING_CONFIRMED&quot;], { time: &quot;09-05 04:20&quot;, source: &quot;EDI&quot;, summary: &quot;离港 ATD&quot; }),
+          E(&quot;ARRIVED&quot;, [&quot;DEPARTED&quot;], { time: &quot;09-12 14:40&quot;, source: &quot;EDI&quot;, summary: &quot;到港 ATA&quot; }),
+          E(&quot;DEST_CUSTOMS_CLEARED&quot;, [&quot;ARRIVED&quot;], { time: &quot;09-13 15:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;目的港清关放行&quot; }),
+          E(&quot;DELIVERED&quot;, [&quot;DEST_CUSTOMS_CLEARED&quot;], { time: &quot;09-14 11:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;签收完成&quot; }),
+        ]
+      },
+      fcl_detain: {
+        title: &quot;FCL 查验扣货（终止）&quot;, info: waybills[3],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-26 09:30&quot;, summary: &quot;委托受理：广州AA家具，2×40GP SZX→LGB&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-26 11:00&quot;, summary: &quot;向 MAERSK 提交订舱申请&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-27 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司回 SO：MAERSK HONGKONG / 441S&quot; }),
+          E(&quot;CNTR_PICKUP&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-29 09:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;提空箱 + 重箱进港&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CNTR_PICKUP&quot;], { time: &quot;08-31 14:00&quot;, role: &quot;BROKER&quot;, summary: &quot;报关申报：木制家具&quot;, fields: &quot;HS CODE 9403.60 · 涉证：植检证&quot; }),
+          E(&quot;CUSTOMS_INSPECTION&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-31 15:10&quot;, source: &quot;EDI&quot;, summary: &quot;海关布控：人工查验&quot;, comms: [comm(&quot;phone&quot;, &quot;报关行&quot;, &quot;人工查验，需要提供原产地证和植检证原件。&quot;)] }),
+          E(&quot;CUSTOMS_DETAINED&quot;, [&quot;CUSTOMS_INSPECTION&quot;], { time: &quot;09-02 10:00&quot;, source: &quot;EDI&quot;, summary: &quot;查验扣货：申报品名与实际货物不符，涉嫌瞒报&quot;, fields: &quot;处理 移交缉私 · 无法出运&quot;, comms: [comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;海关查验发现品名不一致，货被扣了，需要你们配合处理。&quot;)] }),
+        ]
+      },
+      fcl_short: {
+        title: &quot;FCL 漏装（部分完成）&quot;, info: waybills[4],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-20 09:30&quot;, summary: &quot;委托受理：南京BB五金，2×40HQ NGB→NYC&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-20 11:00&quot;, summary: &quot;向 OOCL 提交订舱申请&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-21 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司回 SO：OOCL BERLIN / 098E&quot; }),
+          E(&quot;CNTR_PICKUP&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-23 09:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;提空箱 2 只 + 重箱进港&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CNTR_PICKUP&quot;], { time: &quot;08-25 14:00&quot;, role: &quot;BROKER&quot;, summary: &quot;报关申报完成&quot; }),
+          E(&quot;CUSTOMS_RELEASED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-26 10:00&quot;, source: &quot;EDI&quot;, summary: &quot;海关放行&quot; }),
+          E(&quot;LOADING_CONFIRMED&quot;, [&quot;CUSTOMS_RELEASED&quot;], { time: &quot;08-28 10:00&quot;, source: &quot;EDI&quot;, summary: &quot;1/2 柜装船确认&quot;, fields: &quot;柜号 OOLU8823405A 已装船&quot; }),
+          E(&quot;SHORT_SHIPMENT&quot;, [&quot;LOADING_CONFIRMED&quot;], { time: &quot;08-28 18:30&quot;, source: &quot;EDI&quot;, summary: &quot;漏装：柜号 OOLU8823405B 未装上，顺延下一航次 099E&quot;, fields: &quot;剩余 1×40HQ · 新 ETD 09-04&quot;, comms: [comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;B 柜没赶上 098E，顺延 099E，预计 09-04 开船，延误 1 周。&quot;)] }),
+          E(&quot;DEPARTED&quot;, [&quot;LOADING_CONFIRMED&quot;], { time: &quot;08-29 03:20&quot;, source: &quot;EDI&quot;, summary: &quot;离港 ATD（A 柜）&quot; }),
+          E(&quot;ARRIVED&quot;, [&quot;DEPARTED&quot;], { time: &quot;09-10 04:10&quot;, source: &quot;EDI&quot;, summary: &quot;到港 ATA（A 柜）&quot; }),
+          E(&quot;DEST_CUSTOMS_CLEARED&quot;, [&quot;ARRIVED&quot;], { time: &quot;09-11 15:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;目的港清关（A 柜）&quot; }),
+          E(&quot;DELIVERED&quot;, [&quot;DEST_CUSTOMS_CLEARED&quot;], { time: &quot;09-12 11:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;A 柜签收完成；B 柜随 099E 后续到港&quot; }),
+        ]
+      },
+      fcl_terminated: {
+        title: &quot;FCL 中途终止（提箱后退柜）&quot;, info: waybills[5],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-18 09:30&quot;, summary: &quot;委托受理：无锡CC服饰，1×40HQ SHA→LAX&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-18 11:00&quot;, summary: &quot;向 YML 提交订舱申请&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-19 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司回 SO：YML TOKYO / 551E&quot; }),
+          E(&quot;CNTR_PICKUP&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-22 09:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;提空箱 YMLU8823406，装箱完成待进港&quot; }),
+          E(&quot;ORDER_TERMINATED&quot;, [&quot;CNTR_PICKUP&quot;], { time: &quot;08-23 15:00&quot;, role: &quot;SALES&quot;, summary: &quot;货主取消出运：订单取消，不再安排进港&quot;, fields: &quot;取消原因 海外客户订单取消&quot;, comms: [comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;美国客户那边取消了订单，这票先不出了，辛苦安排退柜。&quot;)] }),
+          E(&quot;CNTR_EMPTY_RETURN&quot;, [&quot;ORDER_TERMINATED&quot;], { time: &quot;08-24 11:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;空箱返还堆场，流程终止&quot;, fields: &quot;还箱堆场 SHA YML DEPOT&quot; }),
+        ]
+      },
+      fcl_multi: {
+        title: &quot;FCL 多次改配 + 多次报关&quot;, info: waybills[8],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-20 09:30&quot;, summary: &quot;委托受理：宁波FF汽配，2×40HQ NGB→LGB&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-20 11:00&quot;, summary: &quot;向 COSCO 提交订舱申请&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-21 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司回 SO：COSCO SHANGHAI / 089E&quot; }),
+          E(&quot;CNTR_PICKUP&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-23 09:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;提空箱 2 只 + 重箱进港&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CNTR_PICKUP&quot;], { time: &quot;08-28 10:00&quot;, role: &quot;BROKER&quot;, summary: &quot;第一次报关申报：申报要素不全被退单&quot;, fields: &quot;退单原因 品名要素缺失&quot;, comms: [comm(&quot;wechat&quot;, &quot;报关行&quot;, &quot;品名要素不齐被退单了，补一下材质和用途重新报。&quot;)] }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-28 16:00&quot;, role: &quot;BROKER&quot;, summary: &quot;第二次报关申报：补充要素后申报成功&quot;, fields: &quot;HS CODE 8708.99 · 申报要素已齐&quot; }),
+          E(&quot;ROLLED&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-29 18:40&quot;, source: &quot;EMAIL&quot;, summary: &quot;第一次甩柜：089E 爆舱，顺延 089F&quot;, comms: [comm(&quot;email&quot;, &quot;船司&quot;, &quot;V.089E rolled due to overbooking.&quot;), comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;第一次甩柜了，改配 089F，我再盯紧点。&quot;)] }),
+          E(&quot;REBOOKING_APPLIED&quot;, [&quot;ROLLED&quot;], { time: &quot;08-29 19:20&quot;, summary: &quot;第一次改配申请：089F 航次&quot;, charge: { name: &quot;改配费&quot;, amount: &quot;¥300&quot; } }),
+          E(&quot;REBOOKING_CONFIRMED&quot;, [&quot;REBOOKING_APPLIED&quot;], { time: &quot;08-30 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司确认改配 089F，重箱留港&quot; }),
+          E(&quot;ROLLED&quot;, [&quot;REBOOKING_CONFIRMED&quot;], { time: &quot;09-01 14:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;第二次甩柜：089F 并班，顺延 089G&quot;, comms: [comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;089F 并班了，又被甩一次……我马上申请 089G。&quot;)] }),
+          E(&quot;REBOOKING_APPLIED&quot;, [&quot;ROLLED&quot;], { time: &quot;09-01 14:40&quot;, summary: &quot;第二次改配申请：089G 航次&quot; }),
+          E(&quot;REBOOKING_CONFIRMED&quot;, [&quot;REBOOKING_APPLIED&quot;], { time: &quot;09-02 09:30&quot;, source: &quot;EMAIL&quot;, summary: &quot;船司确认改配 089G，新截关 09-06&quot; }),
+          E(&quot;CUSTOMS_RELEASED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-28 17:30&quot;, source: &quot;EDI&quot;, summary: &quot;海关放行（跨航次有效）&quot; }),
+          E(&quot;LOADING_CONFIRMED&quot;, [&quot;REBOOKING_CONFIRMED&quot;, &quot;CUSTOMS_RELEASED&quot;], { time: &quot;09-07 11:00&quot;, source: &quot;EDI&quot;, summary: &quot;装船确认（089G）&quot; }),
+          E(&quot;DEPARTED&quot;, [&quot;LOADING_CONFIRMED&quot;], { time: &quot;09-08 03:20&quot;, source: &quot;EDI&quot;, summary: &quot;离港 ATD&quot; }),
+          E(&quot;ARRIVED&quot;, [&quot;DEPARTED&quot;], { time: &quot;09-15 14:40&quot;, source: &quot;EDI&quot;, summary: &quot;到港 ATA&quot; }),
+          E(&quot;DEST_CUSTOMS_CLEARED&quot;, [&quot;ARRIVED&quot;], { time: &quot;09-16 15:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;目的港清关放行&quot; }),
+          E(&quot;DELIVERED&quot;, [&quot;DEST_CUSTOMS_CLEARED&quot;], { time: &quot;09-17 11:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;签收完成&quot; }),
+        ]
+      },
+      fcl_reverse: {
+        title: &quot;FCL 订舱中取消（回退）&quot;, info: waybills[9],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-24 09:30&quot;, summary: &quot;委托受理：杭州GG机械，1×20GP SHA→SIN&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-24 11:00&quot;, summary: &quot;向 PIL 提交订舱申请，等待船司受理&quot;, comms: [comm(&quot;wechat&quot;, &quot;客户&quot;, &quot;这票客户还在确认，先别发出去？&quot;)] }),
+          E(&quot;BOOKING_CANCELLED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-26 09:00&quot;, role: &quot;SALES&quot;, summary: &quot;货主取消委托，船司受理前撤回订舱，回退至待委托状态&quot;, comms: [comm(&quot;phone&quot;, &quot;客户&quot;, &quot;客户说不出了，订单取消，麻烦撤回订舱。&quot;)] }),
+          E(&quot;ORDER_CLOSED&quot;, [&quot;BOOKING_CANCELLED&quot;], { time: &quot;08-26 09:30&quot;, summary: &quot;订单关闭，流程终止&quot; }),
+        ]
+      },
+      lcl_normal: {
+        title: &quot;LCL 拼箱正常&quot;, info: waybills[6],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-22 09:30&quot;, summary: &quot;委托受理：义乌DD百货，LCL 18CBM NGB→LAX&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-22 11:00&quot;, summary: &quot;向 ONE 拼箱订舱&quot; }),
+          E(&quot;SO_RECEIVED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-23 10:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;拼箱公司回 SO：ONE APUS / 008W&quot; }),
+          E(&quot;CFS_INBOUND&quot;, [&quot;SO_RECEIVED&quot;], { time: &quot;08-26 14:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;送货入拼箱仓，称重 12.4T&quot;, fields: &quot;进仓单 CFS-88237 · 仓库 NGB CFS&quot; }),
+          E(&quot;CFS_CONSOLIDATED&quot;, [&quot;CFS_INBOUND&quot;], { time: &quot;08-28 16:00&quot;, role: &quot;SYSTEM&quot;, summary: &quot;拼箱装柜完成（多票货合拼 1×40HQ）&quot;, fields: &quot;柜号 ONEU8823407&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;CFS_CONSOLIDATED&quot;], { time: &quot;08-29 10:00&quot;, role: &quot;BROKER&quot;, summary: &quot;报关申报完成（一柜多票申报）&quot; }),
+          E(&quot;CUSTOMS_RELEASED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-29 16:00&quot;, source: &quot;EDI&quot;, summary: &quot;海关放行&quot; }),
+          E(&quot;LOADING_CONFIRMED&quot;, [&quot;CUSTOMS_RELEASED&quot;], { time: &quot;08-30 10:00&quot;, source: &quot;EDI&quot;, summary: &quot;装船确认&quot; }),
+          E(&quot;DEPARTED&quot;, [&quot;LOADING_CONFIRMED&quot;], { time: &quot;08-30 03:20&quot;, source: &quot;EDI&quot;, summary: &quot;离港 ATD&quot; }),
+          E(&quot;ARRIVED&quot;, [&quot;DEPARTED&quot;], { time: &quot;09-12 04:10&quot;, source: &quot;EDI&quot;, summary: &quot;到港 ATA&quot; }),
+          E(&quot;CFS_DEVANNED&quot;, [&quot;ARRIVED&quot;], { time: &quot;09-13 09:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;目的港拆箱分货完成&quot;, fields: &quot;分货 18CBM / 3 票&quot; }),
+          E(&quot;DELIVERED&quot;, [&quot;CFS_DEVANNED&quot;], { time: &quot;09-14 10:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;货主提货签收&quot; }),
+        ]
+      },
+      air_normal: {
+        title: &quot;空运正常&quot;, info: waybills[7],
+        events: [
+          E(&quot;ORDER_CREATED&quot;, [], { time: &quot;08-27 09:30&quot;, summary: &quot;委托受理：北京EE仪器，AWB 560KG PVG→LAX&quot; }),
+          E(&quot;BOOKING_SUBMITTED&quot;, [&quot;ORDER_CREATED&quot;], { time: &quot;08-27 11:00&quot;, summary: &quot;向 CA 订舱（直飞）&quot; }),
+          E(&quot;SPACE_CONFIRMED&quot;, [&quot;BOOKING_SUBMITTED&quot;], { time: &quot;08-27 16:00&quot;, source: &quot;EMAIL&quot;, summary: &quot;航司确认舱位：CA 983 / 08-31，截单 08-30 20:00&quot;, fields: &quot;主单 MAWB 999-8823&quot; }),
+          E(&quot;WAREHOUSE_INBOUND&quot;, [&quot;SPACE_CONFIRMED&quot;], { time: &quot;08-30 14:00&quot;, role: &quot;TRUCKER&quot;, summary: &quot;入航空货站：安检、过磅完成&quot;, fields: &quot;计费重量 612KG · 随机文件已随货&quot; }),
+          E(&quot;CUSTOMS_DECLARED&quot;, [&quot;WAREHOUSE_INBOUND&quot;], { time: &quot;08-30 16:00&quot;, role: &quot;BROKER&quot;, summary: &quot;报关申报完成&quot; }),
+          E(&quot;CUSTOMS_RELEASED&quot;, [&quot;CUSTOMS_DECLARED&quot;], { time: &quot;08-30 18:00&quot;, source: &quot;EDI&quot;, summary: &quot;海关放行&quot; }),
+          E(&quot;LOADED&quot;, [&quot;CUSTOMS_RELEASED&quot;], { time: &quot;08-31 02:00&quot;, source: &quot;EDI&quot;, summary: &quot;装机完成&quot; }),
+          E(&quot;TAKEOFF&quot;, [&quot;LOADED&quot;], { time: &quot;08-31 04:15&quot;, source: &quot;EDI&quot;, summary: &quot;起飞 ATD&quot; }),
+          E(&quot;LANDED&quot;, [&quot;TAKEOFF&quot;], { time: &quot;08-31 22:40&quot;, source: &quot;EDI&quot;, planned: &quot;计划 08-31 22:10&quot;, summary: &quot;落地 ATA&quot; }),
+          E(&quot;DEST_CUSTOMS_CLEARED&quot;, [&quot;LANDED&quot;], { time: &quot;09-01 13:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;进口清关放行&quot; }),
+          E(&quot;DELIVERED&quot;, [&quot;DEST_CUSTOMS_CLEARED&quot;], { time: &quot;09-01 17:00&quot;, role: &quot;POD_AGENT&quot;, summary: &quot;提货签收完成&quot; }),
+        ]
+      },
+    };
+
+    const el = (id) =&gt; document.getElementById(id);
+    const esc = (s) =&gt; String(s == null ? &quot;&quot; : s).replace(/[&amp;&lt;&gt;&quot;]/g, (c) =&gt; ({ &quot;&amp;&quot;: &quot;&amp;amp;&quot;, &quot;&lt;&quot;: &quot;&amp;lt;&quot;, &quot;&gt;&quot;: &quot;&amp;gt;&quot;, &#x27;&quot;&#x27;: &quot;&amp;quot;&quot; }[c]));
+
+    function scenList() {
+      const mode = el(&quot;fc-mode&quot;).value;
+      return Object.keys(scenarios).filter((k) =&gt; k.startsWith(mode));
+    }
+    function currentScen() { return scenarios[el(&quot;fc-scenario&quot;).value]; }
+
+    function renderList() {
+      el(&quot;fc-list-body&quot;).innerHTML = waybills.map((w) =&gt; {
+        const tagCls = { &quot;甩柜&quot;: &quot;fc-t-roll&quot;, &quot;查验&quot;: &quot;fc-t-inspect&quot;, &quot;扣货&quot;: &quot;fc-t-roll&quot;, &quot;漏装&quot;: &quot;fc-t-inspect&quot;, &quot;终止&quot;: &quot;fc-t-stop&quot;, &quot;多次改配&quot;: &quot;fc-t-inspect&quot;, &quot;回退取消&quot;: &quot;fc-t-stop&quot;, &quot;无&quot;: &quot;&quot; }[w.tag] || &quot;&quot;;
+        return &quot;&lt;tr&gt;&quot; +
+          &#x27;&lt;td class=&quot;fc-link&quot;&gt;&#x27; + esc(w.no) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td&gt;&#x27; + esc({ fcl: &quot;海运整柜&quot;, lcl: &quot;海运拼箱&quot;, air: &quot;空运&quot; }[w.mode]) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td&gt;&#x27; + esc(w.route) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td&gt;&#x27; + esc(w.status) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td&gt;&lt;span class=&quot;fc-tag &#x27; + tagCls + &#x27;&quot;&gt;&#x27; + esc(w.tag) + &quot;&lt;/span&gt;&lt;/td&gt;&quot; +
+          &#x27;&lt;td class=&quot;fc-mono&quot;&gt;&#x27; + esc(w.etd) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td class=&quot;fc-mono&quot;&gt;&#x27; + esc(w.eta) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td&gt;&#x27; + esc(w.last) + &quot;&lt;/td&gt;&quot; +
+          &#x27;&lt;td&gt;&lt;button type=&quot;button&quot; class=&quot;fc-btn&quot; data-open=&quot;&#x27; + esc(w.scen) + &#x27;&quot;&gt;画布&lt;/button&gt;&lt;/td&gt;&#x27; +
+          &quot;&lt;/tr&gt;&quot;;
+      }).join(&quot;&quot;);
+      if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+    }
+
+    function renderInfo() {
+      const w = currentScen().info;
+      const modeName = { fcl: &quot;海运整柜 FCL&quot;, lcl: &quot;海运拼箱 LCL&quot;, air: &quot;空运&quot; }[w.mode];
+      el(&quot;fc-info&quot;).innerHTML = [
+        [&quot;运单号&quot;, w.no], [&quot;业务模式&quot;, modeName], [&quot;主单/分单&quot;, w.mbl + &quot; / &quot; + w.hbl], [&quot;订单状态&quot;, w.status],
+        [&quot;航线&quot;, w.route], [&quot;船名航次&quot;, w.carrier], [&quot;货主&quot;, w.cust], [&quot;柜型柜量&quot;, w.ctnr],
+        [&quot;关键时间&quot;, &#x27;&lt;span class=&quot;fc-time-keys&quot;&gt;ETD &#x27; + w.etd + &quot; · ETA &quot; + w.eta + &quot; · 截关/截港/VGM 见卡片&lt;/span&gt;&quot;]
+      ].map(([k, v]) =&gt; &#x27;&lt;div class=&quot;fc-info-cell&quot;&gt;&lt;div class=&quot;fc-info-label&quot;&gt;&#x27; + esc(k) + &#x27;&lt;/div&gt;&lt;div class=&quot;fc-info-val&#x27; + (k === &quot;关键时间&quot; || k === &quot;运单号&quot; ? &quot; fc-mono&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + (k === &quot;关键时间&quot; ? v : esc(v)) + &quot;&lt;/div&gt;&lt;/div&gt;&quot;).join(&quot;&quot;);
+    }
+
+    function nodeCard(card) {
+      const e = card.first;
+      const m = CARD[e.code];
+      const tagCls = e.tag === &quot;ABNORMAL&quot; ? &quot; fc-abnormal&quot; : e.tag === &quot;REVERSE&quot; ? &quot; fc-reverse&quot; : e.tag === &quot;TERMINAL&quot; ? &quot; fc-terminal&quot; : e.tag === &quot;PARTIAL&quot; ? &quot; fc-partial&quot; : &quot;&quot;;
+      const stateTxt = { ABNORMAL: &quot;异常&quot;, REVERSE: &quot;回退&quot;, TERMINAL: &quot;终止&quot;, PARTIAL: &quot;部分完成&quot; }[e.tag] || &quot;完成&quot;;
+      const comms = card.evts.flatMap((x) =&gt; x.comms || []);
+      const fields = e.fields ? &#x27;&lt;div class=&quot;fc-node-fields&quot;&gt;&#x27; + esc(e.fields) + &quot;&lt;/div&gt;&quot; : &quot;&quot;;
+      const planned = e.planned ? &#x27;&lt;div class=&quot;fc-node-time&quot;&gt;&#x27; + esc(e.planned) + &quot;&lt;/div&gt;&quot; : &quot;&quot;;
+      const charge = card.evts.map((x) =&gt; x.charge).find(Boolean);
+      const chargeHtml = charge ? &#x27;&lt;span class=&quot;fc-node-charge&quot;&gt;💰 &#x27; + esc(charge.name) + &quot; &quot; + esc(charge.amount) + &quot;（只读）&lt;/span&gt;&quot; : &quot;&quot;;
+      const files = card.evts.flatMap((x) =&gt; x.files || []).slice(0, 2).map((f) =&gt; &#x27;&lt;span class=&quot;fc-file&quot;&gt;&lt;i data-lucide=&quot;file-text&quot; aria-hidden=&quot;true&quot; style=&quot;width:12px;height:12px&quot;&gt;&lt;/i&gt;&#x27; + esc(f.n) + &quot;&lt;/span&gt;&quot;).join(&quot;&quot;);
+      const repeat = card.count &gt; 1 ? &#x27;&lt;span class=&quot;fc-repeat-badge&quot;&gt;×&#x27; + card.count + &quot;&lt;/span&gt;&quot; : &quot;&quot;;
+      const changeBadge = card.changed ? &#x27;&lt;span class=&quot;fc-change-badge&quot;&gt;改单 ×&#x27; + card.changed + &quot;&lt;/span&gt;&quot; : &quot;&quot;;
+      const evtCount = card.evts.length + (card.changed || 0);
+      return &#x27;&lt;div class=&quot;fc-node&#x27; + tagCls + &#x27;&quot;&gt;&#x27; +
+        &#x27;&lt;div class=&quot;fc-node-head&quot;&gt;&lt;span class=&quot;fc-node-name&quot;&gt;&#x27; + esc(m.name) + &#x27;&lt;/span&gt;&lt;code class=&quot;fc-node-code&quot;&gt;&#x27; + esc(e.code) + &quot;&lt;/code&gt;&quot; + repeat + changeBadge + &#x27;&lt;span class=&quot;fc-node-state&quot;&gt;&#x27; + stateTxt + &quot;&lt;/span&gt;&lt;/div&gt;&quot; +
+        &#x27;&lt;div class=&quot;fc-node-time&quot;&gt;&#x27; + esc(e.time) + &quot;&lt;/div&gt;&quot; + planned +
+        &#x27;&lt;div class=&quot;fc-node-summary&quot;&gt;&#x27; + esc(e.summary) + &quot;&lt;/div&gt;&quot; + fields +
+        &#x27;&lt;div class=&quot;fc-node-actions&quot;&gt;&#x27; +
+          &#x27;&lt;button type=&quot;button&quot; data-evt=&quot;&#x27; + esc(e.code) + &#x27;&quot;&gt;&lt;i data-lucide=&quot;list&quot; aria-hidden=&quot;true&quot; style=&quot;width:12px;height:12px;vertical-align:-1px&quot;&gt;&lt;/i&gt; 事件 &#x27; + evtCount + &#x27; 条 · 查看&lt;/button&gt;&#x27; +
+          &#x27;&lt;button type=&quot;button&quot; class=&quot;fc-comm-btn&quot; data-comm=&quot;&#x27; + esc(e.code) + &#x27;&quot;&gt;&lt;i data-lucide=&quot;message-circle&quot; aria-hidden=&quot;true&quot; style=&quot;width:12px;height:12px;vertical-align:-1px&quot;&gt;&lt;/i&gt; 沟通 &#x27; + (comms.length ? comms.length + &quot; 条&quot; : &quot;无&quot;) + &quot; · 查看&lt;/button&gt;&quot; +
+        &quot;&lt;/div&gt;&quot; +
+        (comms.length ? &#x27;&lt;div class=&quot;fc-comm-row&quot;&gt;&lt;span class=&quot;fc-comm-none&quot;&gt;&#x27; + comms.length + &quot; 条沟通挂载于本节点&lt;/span&gt;&lt;/div&gt;&quot; : &#x27;&lt;div class=&quot;fc-comm-row&quot;&gt;&lt;span class=&quot;fc-comm-none&quot;&gt;无 · 本节点未挂载沟通&lt;/span&gt;&lt;/div&gt;&#x27;) +
+        chargeHtml + files +
+        &quot;&lt;/div&gt;&quot;;
+    }
+
+    function buildCards(events) {
+      const cards = [];
+      const byCode = new Map();
+      events.forEach((e) =&gt; {
+        if (e.tag === &quot;CHANGE&quot;) return;
+        let c = byCode.get(e.code);
+        if (!c) { c = { code: e.code, first: e, count: 0, evts: [] }; byCode.set(e.code, c); cards.push(c); }
+        c.count += 1;
+        c.evts.push(e);
+      });
+      events.forEach((e) =&gt; {
+        if (e.tag === &quot;CHANGE&quot; &amp;&amp; e.prev.length) {
+          const t = byCode.get(e.prev[0]);
+          if (t) t.changed = (t.changed || 0) + 1;
+        }
+      });
+      return { cards, byCode };
+    }
+
+    function topoMain(mainCards) {
+      const idx = new Map();
+      mainCards.forEach((c, i) =&gt; idx.set(c.code, i));
+      const indeg = new Map();
+      mainCards.forEach((c) =&gt; indeg.set(c.code, 0));
+      const adj = new Map();
+      mainCards.forEach((c) =&gt; adj.set(c.code, []));
+      mainCards.forEach((c) =&gt; {
+        (c.first.prev || []).forEach((p) =&gt; {
+          if (idx.has(p) &amp;&amp; p !== c.code) {
+            adj.get(p).push(c.code);
+            indeg.set(c.code, indeg.get(c.code) + 1);
+          }
+        });
+      });
+      const q = mainCards.filter((c) =&gt; indeg.get(c.code) === 0).map((c) =&gt; c.code);
+      const order = [];
+      while (q.length) {
+        const code = q.shift();
+        order.push(code);
+        (adj.get(code) || []).forEach((n) =&gt; {
+          indeg.set(n, indeg.get(n) - 1);
+          if (indeg.get(n) === 0) q.push(n);
+        });
+      }
+      mainCards.forEach((c) =&gt; { if (!order.includes(c.code)) order.push(c.code); });
+      const byCode = new Map(mainCards.map((c) =&gt; [c.code, c]));
+      return order.map((code) =&gt; byCode.get(code));
+    }
+
+    function renderFlow() {
+      const events = currentScen().events;
+      const { cards } = buildCards(events);
+      const mainCards = cards.filter((c) =&gt; c.first.tag === &quot;NORMAL&quot; || !c.first.tag);
+      const branchCards = cards.filter((c) =&gt; c.first.tag &amp;&amp; c.first.tag !== &quot;NORMAL&quot;);
+      const orderedMain = topoMain(mainCards);
+      const chains = [];
+      branchCards.forEach((c) =&gt; {
+        const prev = c.first.prev[0];
+        const chain = chains.find((ch) =&gt; ch.some((x) =&gt; x.code === prev));
+        if (chain) chain.push(c); else chains.push([c]);
+      });
+      const flow = el(&quot;fc-flow&quot;);
+      flow.innerHTML = &quot;&quot;;
+      orderedMain.forEach((c) =&gt; {
+        const row = document.createElement(&quot;div&quot;);
+        row.className = &quot;fc-row&quot;;
+        const chain = chains.find((ch) =&gt; ch[0].first.prev[0] === c.code);
+        let html = &#x27;&lt;span class=&quot;fc-dot&quot;&gt;&lt;/span&gt;&lt;div class=&quot;fc-row-inner&quot;&gt;&#x27; + nodeCard(c);
+        if (chain) {
+          const tag = chain[0].first.tag;
+          const branchCls = tag === &quot;REVERSE&quot; ? &quot; fc-b-reverse&quot; : tag === &quot;TERMINAL&quot; ? &quot; fc-b-terminal&quot; : tag === &quot;PARTIAL&quot; ? &quot; fc-b-partial&quot; : &quot;&quot;;
+          const tip = tag === &quot;REVERSE&quot; ? &quot;逆向回退 ↓&quot; : tag === &quot;TERMINAL&quot; ? &quot;终止 ↓&quot; : tag === &quot;PARTIAL&quot; ? &quot;部分完成 ↓&quot; : &quot;异常分支 ↓&quot;;
+          const cardsHtml = chain.map((x, i) =&gt; &#x27;&lt;div class=&quot;fc-branch-tip&quot;&gt;&#x27; + (i === 0 ? tip : &quot;&quot;) + &quot;&lt;/div&gt;&quot; + nodeCard(x)).join(&quot;&quot;);
+          const lastCode = chain[chain.length - 1].code;
+          const mergeTarget = orderedMain.find((m) =&gt; (m.first.prev || []).includes(lastCode));
+          const mergeTxt = mergeTarget
+            ? &#x27;&lt;div class=&quot;fc-branch-merge&quot;&gt;↳ 汇合至 &#x27; + esc(CARD[mergeTarget.code].name) + &quot;&lt;/div&gt;&quot;
+            : (tag === &quot;TERMINAL&quot; ? &#x27;&lt;div class=&quot;fc-branch-merge&quot; style=&quot;color:var(--p-gray)&quot;&gt;流程终止&lt;/div&gt;&#x27; : &quot;&quot;);
+          html += &#x27;&lt;div class=&quot;fc-branch&#x27; + branchCls + &#x27;&quot;&gt;&#x27; + cardsHtml + mergeTxt + &quot;&lt;/div&gt;&quot;;
+        }
+        html += &quot;&lt;/div&gt;&quot;;
+        row.innerHTML = html;
+        flow.appendChild(row);
+      });
+      if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+    }
+
+    function openScenario(key) {
+      el(&quot;fc-scenario&quot;).value = key;
+      renderInfo(); renderFlow();
+      el(&quot;fc-title&quot;).textContent = &quot;全链路画布 · &quot; + currentScen().title;
+      el(&quot;fc-view-list&quot;).classList.remove(&quot;fc-on&quot;);
+      el(&quot;fc-view-canvas&quot;).classList.add(&quot;fc-on&quot;);
+      el(&quot;fc-list&quot;).hidden = true;
+      el(&quot;fc-canvas&quot;).hidden = false;
+    }
+
+    function evtRows(code) {
+      return currentScen().events.filter((e) =&gt; e.code === code || (e.tag === &quot;CHANGE&quot; &amp;&amp; e.prev[0] === code)).map((e) =&gt; {
+        const isChange = e.tag === &quot;CHANGE&quot;;
+        const payloadHtml = Object.keys(e.payload).length
+          ? &quot;&lt;details class=\&quot;fc-payload\&quot;&gt;&lt;summary&gt;查看原始 payload&lt;/summary&gt;&lt;pre class=\&quot;fc-json\&quot;&gt;&quot; + esc(JSON.stringify(e.payload, null, 2)) + &quot;&lt;/pre&gt;&lt;/details&gt;&quot;
+          : &quot;&quot;;
+        const files = (e.files || []).map((f) =&gt; &#x27;&lt;span class=&quot;fc-file&quot;&gt;&lt;i data-lucide=&quot;file-text&quot; aria-hidden=&quot;true&quot; style=&quot;width:12px;height:12px&quot;&gt;&lt;/i&gt;&#x27; + esc(f.n) + &quot;&lt;/span&gt;&quot;).join(&quot; &quot;);
+        const changeTag = isChange ? &#x27;&lt;span class=&quot;fc-change-badge&quot;&gt;改单&lt;/span&gt;&#x27; : &quot;&quot;;
+        return &#x27;&lt;div class=&quot;fc-evt&#x27; + (isChange ? &quot; fc-evt-change&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; +
+          &#x27;&lt;div class=&quot;fc-evt-head&quot;&gt;&lt;span class=&quot;fc-strong&quot;&gt;&#x27; + esc(e.time) + &quot;&lt;/span&gt;&lt;span&gt;&quot; + esc(ROLE[e.role] || e.role) + &quot;&lt;/span&gt;&lt;span&gt;&quot; + esc(SRC[e.source] || e.source) + &quot;&lt;/span&gt;&lt;code class=\&quot;fc-node-code\&quot;&gt;&quot; + esc(e.code) + &quot;&lt;/code&gt;&quot; + changeTag + &quot;&lt;/div&gt;&quot; +
+          &#x27;&lt;div class=&quot;fc-evt-sum&quot;&gt;&#x27; + esc(e.summary) + &quot;&lt;/div&gt;&quot; + payloadHtml +
+          (files ? &#x27;&lt;div&gt;&#x27; + files + &quot;&lt;/div&gt;&quot; : &quot;&quot;) +
+          &quot;&lt;/div&gt;&quot;;
+      }).join(&quot;&quot;);
+    }
+
+    function openEventModal(code) {
+      el(&quot;fc-event-title&quot;).textContent = &quot;事件日志 · &quot; + CARD[code].name;
+      el(&quot;fc-event-body&quot;).innerHTML = evtRows(code) || &#x27;&lt;div class=&quot;fc-sub&quot;&gt;该节点暂无事件日志&lt;/div&gt;&#x27;;
+      el(&quot;fc-event-mask&quot;).classList.add(&quot;fc-show&quot;);
+      if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+    }
+
+    const COMM_TAB = { wechat: &quot;聊天&quot;, email: &quot;邮件&quot;, phone: &quot;电话&quot;, screenshot: &quot;截图&quot; };
+    let currentCommCode = null;
+    function openCommModal(code) {
+      currentCommCode = code;
+      const comms = currentScen().events.filter((e) =&gt; e.code === code).flatMap((e) =&gt; e.comms || []);
+      el(&quot;fc-comm-title&quot;).textContent = &quot;沟通记录 · &quot; + CARD[code].name + (comms.length ? &quot;（&quot; + comms.length + &quot; 条）&quot; : &quot;&quot;);
+      const types = [&quot;wechat&quot;, &quot;email&quot;, &quot;phone&quot;, &quot;screenshot&quot;].filter((t) =&gt; comms.some((c) =&gt; c.type === t));
+      el(&quot;fc-comm-tabs&quot;).innerHTML = types.map((t) =&gt; &#x27;&lt;button type=&quot;button&quot; data-tab=&quot;&#x27; + t + &#x27;&quot; class=&quot;&#x27; + (t === types[0] ? &quot;fc-on&quot; : &quot;&quot;) + &#x27;&quot;&gt;&#x27; + COMM_TAB[t] + &quot;&lt;/button&gt;&quot;).join(&quot;&quot;) || &#x27;&lt;button type=&quot;button&quot; class=&quot;fc-on&quot;&gt;全部&lt;/button&gt;&#x27;;
+      el(&quot;fc-comm-body&quot;).innerHTML = commBody(comms, types[0]);
+      el(&quot;fc-comm-mask&quot;).classList.add(&quot;fc-show&quot;);
+      if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+    }
+    function commBody(comms, tab) {
+      const list = tab ? comms.filter((c) =&gt; c.type === tab) : comms;
+      if (!list.length) return &#x27;&lt;div class=&quot;fc-sub&quot;&gt;无沟通记录&lt;/div&gt;&#x27;;
+      return list.map((c) =&gt; {
+        const icon = { wechat: &quot;message-circle&quot;, email: &quot;mail&quot;, phone: &quot;phone&quot;, screenshot: &quot;image&quot; }[c.type] || &quot;message-circle&quot;;
+        const img = c.type === &quot;screenshot&quot; ? &#x27;&lt;div class=&quot;fc-msg-img&quot;&gt;&lt;i data-lucide=&quot;image&quot; aria-hidden=&quot;true&quot; style=&quot;width:16px;height:16px&quot;&gt;&lt;/i&gt; 截图预览&lt;/div&gt;&#x27; : &quot;&quot;;
+        return &#x27;&lt;div class=&quot;fc-msg&quot;&gt;&lt;div class=&quot;fc-avatar&quot;&gt;&lt;i data-lucide=&quot;&#x27; + icon + &#x27;&quot; aria-hidden=&quot;true&quot; style=&quot;width:14px;height:14px&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27; +
+          &#x27;&lt;div class=&quot;fc-msg-body&quot;&gt;&lt;div class=&quot;fc-msg-meta&quot;&gt;&#x27; + esc(c.from) + &quot; · &quot; + COMM_TAB[c.type] + &quot;&lt;/div&gt;&quot; +
+          &#x27;&lt;div class=&quot;fc-msg-text&quot;&gt;&#x27; + esc(c.text) + &quot;&lt;/div&gt;&quot; + img + &quot;&lt;/div&gt;&lt;/div&gt;&quot;;
+      }).join(&quot;&quot;);
+    }
+
+    function bind() {
+      el(&quot;fc-list-body&quot;).addEventListener(&quot;click&quot;, (ev) =&gt; {
+        const btn = ev.target.closest(&quot;[data-open]&quot;);
+        if (btn) openScenario(btn.getAttribute(&quot;data-open&quot;));
+      });
+      el(&quot;fc-flow&quot;).addEventListener(&quot;click&quot;, (ev) =&gt; {
+        const eb = ev.target.closest(&quot;[data-evt]&quot;);
+        const cb = ev.target.closest(&quot;[data-comm]&quot;);
+        if (eb) openEventModal(eb.getAttribute(&quot;data-evt&quot;));
+        if (cb) openCommModal(cb.getAttribute(&quot;data-comm&quot;));
+      });
+      document.querySelectorAll(&quot;[data-close]&quot;).forEach((b) =&gt; {
+        b.addEventListener(&quot;click&quot;, () =&gt; el(b.getAttribute(&quot;data-close&quot;)).classList.remove(&quot;fc-show&quot;));
+      });
+      document.querySelectorAll(&quot;.fc-modal-mask&quot;).forEach((m) =&gt; {
+        m.addEventListener(&quot;click&quot;, (ev) =&gt; { if (ev.target === m) m.classList.remove(&quot;fc-show&quot;); });
+      });
+      el(&quot;fc-comm-tabs&quot;).addEventListener(&quot;click&quot;, (ev) =&gt; {
+        const b = ev.target.closest(&quot;[data-tab]&quot;);
+        if (!b) return;
+        document.querySelectorAll(&quot;#fc-comm-tabs button&quot;).forEach((x) =&gt; x.classList.remove(&quot;fc-on&quot;));
+        b.classList.add(&quot;fc-on&quot;);
+        const comms = currentCommCode ? currentScen().events.filter((e) =&gt; e.code === currentCommCode).flatMap((e) =&gt; e.comms || []) : [];
+        el(&quot;fc-comm-body&quot;).innerHTML = commBody(comms, b.getAttribute(&quot;data-tab&quot;));
+        if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      });
+      el(&quot;fc-view-list&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+        el(&quot;fc-view-list&quot;).classList.add(&quot;fc-on&quot;);
+        el(&quot;fc-view-canvas&quot;).classList.remove(&quot;fc-on&quot;);
+        el(&quot;fc-canvas&quot;).hidden = true;
+        el(&quot;fc-list&quot;).hidden = false;
+        el(&quot;fc-title&quot;).textContent = &quot;订单全链路看板&quot;;
+      });
+      el(&quot;fc-view-canvas&quot;).addEventListener(&quot;click&quot;, () =&gt; openScenario(el(&quot;fc-scenario&quot;).value));
+      el(&quot;fc-mode&quot;).addEventListener(&quot;change&quot;, () =&gt; {
+        const opts = scenList();
+        el(&quot;fc-scenario&quot;).innerHTML = opts.map((k) =&gt; &#x27;&lt;option value=&quot;&#x27; + k + &#x27;&quot;&gt;&#x27; + scenarios[k].title + &quot;&lt;/option&gt;&quot;).join(&quot;&quot;);
+        openScenario(opts[0]);
+      });
+      el(&quot;fc-scenario&quot;).addEventListener(&quot;change&quot;, () =&gt; openScenario(el(&quot;fc-scenario&quot;).value));
+      el(&quot;fc-comm-toggle&quot;).addEventListener(&quot;change&quot;, (ev) =&gt; {
+        el(&quot;fullchain-design&quot;).classList.toggle(&quot;fc-comm-off&quot;, !ev.target.checked);
+      });
+    }
+
+    function init() {
+      const opts = scenList();
+      el(&quot;fc-scenario&quot;).innerHTML = opts.map((k) =&gt; &#x27;&lt;option value=&quot;&#x27; + k + &#x27;&quot;&gt;&#x27; + scenarios[k].title + &quot;&lt;/option&gt;&quot;).join(&quot;&quot;);
+      el(&quot;fc-mode&quot;).value = &quot;fcl&quot;;
+      renderList();
+      el(&quot;fc-comm-toggle&quot;).checked = true;
+      bind();
+      renderInfo();
+      renderFlow();
+      if (window.lucide) window.lucide.createIcons({ attrs: { width: 16, height: 16 } });
+    }
+    init();
+  })();
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
